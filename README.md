@@ -1,109 +1,134 @@
-TrainerNPCs
+🎮 TrainerNPCs
 
-A Fabric 1.21.1 server/client mod that adds configurable trainer NPCs and command NPCs designed for Cobblemon servers.
-It integrates with Radical Cobblemon Trainers API (RCT API) to allow fully customizable trainer battles, progression systems, rewards, and NPC interactions.
+TrainerNPCs is a Fabric 1.21.1 mod that adds fully configurable trainer NPCs and command NPCs for Cobblemon servers.
 
-TrainerNPCs lets server owners create Pokémon-style gyms, story progression, healing NPCs, quest NPCs, and more — all configured in-game with commands.
+It integrates with the Radical Cobblemon Trainers API (RCT API) to provide Pokémon-style trainer battles, gym progression systems, rewards, and interactive NPCs.
 
-Features
-Trainer NPCs
+Perfect for creating:
 
-Create NPC trainers that players can battle using their Cobblemon team.
+🏟️ Gym Leaders
+
+📖 Story progression
+
+❤️ Healing NPCs
+
+🎁 Reward trainers
+
+🧭 Quest or utility NPCs
+
+✨ Features
+🧑‍🏫 Trainer NPCs
+
+Create NPC trainers that battle players using Cobblemon teams.
 
 Features include:
 
-Custom trainer teams
+⚔️ Cobblemon trainer battles
 
-Configure IVs, EVs, moves, abilities, and level
+📈 Optional level scaling to player's strongest Pokémon
 
-Optional level scaling to match the player’s highest Pokémon
+🎯 Custom IVs, EVs, moves, abilities, and levels
 
-Custom battle rulesets
+🎮 Singles or doubles battle formats
 
-Singles / Doubles battle formats
+🎒 Custom item usage rules
 
-Item usage rules
+🔒 Optional level caps
 
-Level caps
+👥 Multiple players can challenge the same trainer simultaneously
 
-Multiple players can challenge the same trainer at the same time
+🎁 Rewards after victory
 
-Cooldown or one-time rewards
+⏱️ Cooldown-based or one-time rewards
 
-Per-NPC reward items
+🏆 Gym Progression System
 
-Trainer defeat tracking per player
+Create real Pokémon-style gym progression.
 
-Gym / Progression System
-
-TrainerNPCs supports trainer progression so players must defeat certain trainers before challenging others.
+Players must defeat certain trainers before challenging others.
 
 Example progression:
 
-Rock Gym → Grass Gym → Electric Gym
+Rock Gym ➜ Grass Gym ➜ Electric Gym
 
-Commands allow you to require that a player defeats one trainer NPC before battling the next.
-
-Example:
+Example command:
 
 /trainernpc require grass_gym set all rock_gym
 
-If a player hasn't defeated the required trainer, the battle is blocked and a configurable message is shown.
+If a player hasn't defeated the required trainer, the challenge is blocked and a custom message is displayed.
 
-Command NPCs
+🧍 Command NPCs
 
-Create normal NPCs that run commands when right-clicked.
+Create simple NPCs that run commands when interacted with.
 
 Examples:
 
-/pokeheal
+❤️ /pokeheal
 
-/pc
+📦 /pc
 
-/warp spawn
+🧭 /warp spawn
 
-quest or dialogue commands
+📜 Quest or dialogue triggers
 
 Commands run as the interacting player, ensuring compatibility with permissions and other mods.
 
-NPC Customization
+🎨 NPC Customization
 
-NPCs support several customization options:
+TrainerNPCs allows extensive NPC customization.
 
-Player skins by username
+🧑‍🎤 Player Skins
 
-Formatted overhead text
+NPCs can use Minecraft player skins by username, even if that player has never joined the server.
 
-Look at nearby players while standing still
+💬 Overhead Text
 
-Spawn at the command executor
+Add formatted text above NPCs.
 
-Cannot be damaged by players
-
-Do not appear in the player tab list
-
-Formatting codes are supported:
+Formatting example:
 
 &l&dGrass Gym Leader
-Server Friendly
 
-TrainerNPCs is designed to be safe for public servers.
+Supports Minecraft formatting codes.
 
-NPCs cannot be damaged
+👀 Behavior
 
-Commands run as players (not console)
+NPCs:
 
-Interaction anti-spam protection
+👁️ Look at nearby players
 
-Permission support via LuckPerms / Fabric Permissions API
+🚫 Cannot move
 
-Server-side data validation
+🛡️ Cannot be damaged
 
-NPCs automatically despawn when chunks unload and respawn when the area loads again, preventing unnecessary entity load.
+📋 Do not appear in the player tab list
 
-Requirements
+⚙️ Server-Friendly Design
 
-Server:
+TrainerNPCs was built with public servers in mind.
+
+Security features include:
+
+🛡️ NPCs are invulnerable
+
+🚫 Commands never run as console
+
+⏳ Interaction anti-spam protection
+
+🔐 LuckPerms compatible permission checks
+
+🧾 Server-side validation of NPC data
+
+NPCs also automatically:
+
+📦 Despawn when chunks unload
+
+🔄 Respawn when the area is loaded again
+
+This keeps entity counts low and improves server performance.
+
+📦 Requirements
+Server
 
 Fabric Loader
 
@@ -113,7 +138,7 @@ Cobblemon
 
 Radical Cobblemon Trainers API (RCT API)
 
-Client:
+Client
 
 Fabric Loader
 
@@ -121,11 +146,11 @@ Fabric API
 
 TrainerNPCs Client Mod
 
-Building
+🛠️ Building the Mod
 
 Requires Java 21.
 
-Build the project:
+Build using Gradle:
 
 ./gradlew build
 
@@ -133,30 +158,28 @@ Output jars:
 
 server/build/libs/trainernpcs-server.jar
 client/build/libs/trainernpcs-client.jar
-Example Commands
-
-Create and spawn a trainer:
-
+📜 Example Commands
+Create a Trainer NPC
 /trainernpc create rock_gym rock_trainer
 /trainernpc spawn rock_gym
-
-Require another trainer to be defeated:
-
+Require another trainer to be defeated
 /trainernpc require grass_gym set all rock_gym
-
-Create a command NPC:
-
+Create a Command NPC
 /npc create healer
 /npc spawn healer
 /npc setcmd healer pokeheal
-Planned Improvements
+🚧 Planned Features
 
-GUI trainer editor
+Future improvements may include:
 
-Dialogue system
+🖥️ GUI trainer editor
 
-Quest system
+💬 Dialogue system
 
-Datapack trainer templates
+🧭 Quest framework
 
-Advanced reward pools
+📚 Datapack trainer templates
+
+🎲 Advanced reward pools
+
+🎭 NPC animations
