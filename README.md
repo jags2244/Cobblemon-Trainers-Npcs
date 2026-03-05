@@ -1,134 +1,27 @@
-🎮 TrainerNPCs
+TrainerNPCs
 
-TrainerNPCs is a Fabric 1.21.1 mod that adds fully configurable trainer NPCs and command NPCs for Cobblemon servers.
+TrainerNPCs is a Fabric mod for Cobblemon servers that lets server owners create:
 
-It integrates with the Radical Cobblemon Trainers API (RCT API) to provide Pokémon-style trainer battles, gym progression systems, rewards, and interactive NPCs.
+Trainer NPCs (start Cobblemon trainer battles using Radical Cobblemon Trainers API)
 
-Perfect for creating:
+Command NPCs (run commands when right-clicked, as the player)
 
-🏟️ Gym Leaders
+NPCs are designed for performance and public servers:
 
-📖 Story progression
+NPCs cannot move
 
-❤️ Healing NPCs
+NPCs cannot be damaged
 
-🎁 Reward trainers
+NPCs look at nearby players
 
-🧭 Quest or utility NPCs
+NPCs despawn when chunks unload and respawn when chunks load
 
-✨ Features
-🧑‍🏫 Trainer NPCs
+Trainers support progression (players must defeat earlier gyms before challenging later ones)
 
-Create NPC trainers that battle players using Cobblemon teams.
+Multiple players can challenge the same trainer NPC
 
-Features include:
-
-⚔️ Cobblemon trainer battles
-
-📈 Optional level scaling to player's strongest Pokémon
-
-🎯 Custom IVs, EVs, moves, abilities, and levels
-
-🎮 Singles or doubles battle formats
-
-🎒 Custom item usage rules
-
-🔒 Optional level caps
-
-👥 Multiple players can challenge the same trainer simultaneously
-
-🎁 Rewards after victory
-
-⏱️ Cooldown-based or one-time rewards
-
-🏆 Gym Progression System
-
-Create real Pokémon-style gym progression.
-
-Players must defeat certain trainers before challenging others.
-
-Example progression:
-
-Rock Gym ➜ Grass Gym ➜ Electric Gym
-
-Example command:
-
-/trainernpc require grass_gym set all rock_gym
-
-If a player hasn't defeated the required trainer, the challenge is blocked and a custom message is displayed.
-
-🧍 Command NPCs
-
-Create simple NPCs that run commands when interacted with.
-
-Examples:
-
-❤️ /pokeheal
-
-📦 /pc
-
-🧭 /warp spawn
-
-📜 Quest or dialogue triggers
-
-Commands run as the interacting player, ensuring compatibility with permissions and other mods.
-
-🎨 NPC Customization
-
-TrainerNPCs allows extensive NPC customization.
-
-🧑‍🎤 Player Skins
-
-NPCs can use Minecraft player skins by username, even if that player has never joined the server.
-
-💬 Overhead Text
-
-Add formatted text above NPCs.
-
-Formatting example:
-
-&l&dGrass Gym Leader
-
-Supports Minecraft formatting codes.
-
-👀 Behavior
-
-NPCs:
-
-👁️ Look at nearby players
-
-🚫 Cannot move
-
-🛡️ Cannot be damaged
-
-📋 Do not appear in the player tab list
-
-⚙️ Server-Friendly Design
-
-TrainerNPCs was built with public servers in mind.
-
-Security features include:
-
-🛡️ NPCs are invulnerable
-
-🚫 Commands never run as console
-
-⏳ Interaction anti-spam protection
-
-🔐 LuckPerms compatible permission checks
-
-🧾 Server-side validation of NPC data
-
-NPCs also automatically:
-
-📦 Despawn when chunks unload
-
-🔄 Respawn when the area is loaded again
-
-This keeps entity counts low and improves server performance.
-
-📦 Requirements
-Server
+Dependencies
+Server (Required)
 
 Fabric Loader
 
@@ -138,48 +31,69 @@ Cobblemon
 
 Radical Cobblemon Trainers API (RCT API)
 
-Client
+TrainerNPCs (Server)
+
+Client (Required for skins / rendering)
 
 Fabric Loader
 
 Fabric API
 
-TrainerNPCs Client Mod
+TrainerNPCs (Client)
 
-🛠️ Building the Mod
+Note: The mod is split into server + client jars. Server jar is required for gameplay. Client jar is required to render player-model NPCs with skins.
 
-Requires Java 21.
+Commands
+Trainer NPC Commands (/trainernpc)
 
-Build using Gradle:
+/trainernpc create <npc_id> <trainer_id> - Creates a trainer NPC linked to the specified RCT trainer ID.
+/trainernpc spawn <npc_id> - Spawns the trainer NPC at your current location.
+/trainernpc remove <npc_id> - Deletes the trainer NPC and its saved configuration.
 
-./gradlew build
+/trainernpc text <npc_id> <text> - Sets the text displayed above the NPC (supports Minecraft formatting codes, & will be converted to §).
+/trainernpc skin <npc_id> <minecraft_username> - Sets the NPC’s skin to the given Minecraft username.
 
-Output jars:
+/trainernpc rules <npc_id> format singles - Sets the trainer battle format to singles (if supported).
+/trainernpc rules <npc_id> format doubles - Sets the trainer battle format to doubles (if supported).
+/trainernpc rules <npc_id> itemusage default - Uses default item rules.
+/trainernpc rules <npc_id> itemusage no_items - Disables bag items in battle.
+/trainernpc rules <npc_id> itemusage held_only - Allows held items but blocks bag items.
+/trainernpc rules <npc_id> itemusage limited - Limits item usage (server-defined limit).
+/trainernpc rules <npc_id> levelcap <number|off> - Sets a level cap for the battle, or disables it.
 
-server/build/libs/trainernpcs-server.jar
-client/build/libs/trainernpcs-client.jar
-📜 Example Commands
-Create a Trainer NPC
-/trainernpc create rock_gym rock_trainer
-/trainernpc spawn rock_gym
-Require another trainer to be defeated
-/trainernpc require grass_gym set all rock_gym
-Create a Command NPC
-/npc create healer
-/npc spawn healer
-/npc setcmd healer pokeheal
-🚧 Planned Features
+/trainernpc rewards <npc_id> sethand - Sets the reward to the item you are holding.
+/trainernpc rewards <npc_id> addhand - Adds the held item to the reward list.
+/trainernpc rewards <npc_id> clear - Clears all rewards for that trainer NPC.
+/trainernpc rewards <npc_id> once - Makes rewards claimable once per player.
+/trainernpc rewards <npc_id> cooldown <duration> - Makes rewards claimable on a cooldown per player (10s, 5m, 2h, 3d, 1h30m).
 
-Future improvements may include:
+/trainernpc require <npc_id> set all <required_npc_id> [more...] - Requires players to defeat ALL listed trainer NPCs before challenging this one.
+/trainernpc require <npc_id> set any <required_npc_id> [more...] - Requires players to defeat ANY one of the listed trainer NPCs before challenging this one.
+/trainernpc require <npc_id> clear - Removes all progression requirements from the trainer NPC.
+/trainernpc require <npc_id> message <text> - Sets the blocked message shown when a player hasn’t met requirements (supports & formatting).
 
-🖥️ GUI trainer editor
+/trainernpc reload - Reloads trainer NPC configurations from disk.
 
-💬 Dialogue system
+Command NPC Commands (/npc)
 
-🧭 Quest framework
+/npc create <npc_id> - Creates a command NPC.
+/npc spawn <npc_id> - Spawns the command NPC at your current location.
+/npc remove <npc_id> - Deletes the command NPC and its saved configuration.
 
-📚 Datapack trainer templates
+/npc text <npc_id> <text> - Sets the text displayed above the NPC (supports & → §).
+/npc skin <npc_id> <minecraft_username> - Sets the NPC’s skin to the given Minecraft username.
 
-🎲 Advanced reward pools
+/npc setcmd <npc_id> <command> - Sets the command to run when a player right-clicks the NPC (runs as the player, not console).
+/npc addcmd <npc_id> <command> - Adds another command to run on interact.
+/npc clearcmd <npc_id> - Clears all commands on that NPC.
 
-🎭 NPC animations
+/npc cooldown <npc_id> <duration|off> - Sets an interaction cooldown per player (30s, 10m, 1h30m, etc.), or disables it.
+/npc once <npc_id> on - Makes the NPC usable once per player.
+/npc once <npc_id> off - Disables once-per-player restriction.
+
+/npc reload - Reloads command NPC configurations from disk.
+
+Examples
+
+/npc setcmd healer pokeheal - Makes an NPC heal the player’s Cobblemon party on right-click.
+/trainernpc require grass_gym set all rock_gym - Requires defeating the Rock Gym trainer before challenging the Grass Gym trainer.
