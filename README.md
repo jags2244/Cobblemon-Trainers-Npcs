@@ -146,16 +146,3 @@ Create a healer NPC:
 
 /npc setcmd healer pokeheal
 
-If you want, I can also give you a much more polished GitHub README like big Cobblemon mods use with:
-
-⭐ feature section
-
-📷 screenshots section
-
-📦 install instructions
-
-⚙️ config examples
-
-🏟️ gym setup example
-
-It’ll make the repo look way more professional.
