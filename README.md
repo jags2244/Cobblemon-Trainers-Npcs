@@ -1,4 +1,5 @@
 **TrainerNPCs**
+
 TrainerNPCs is a Fabric mod for Cobblemon servers that allows server owners to create trainer NPCs and command NPCs.
 
 Trainer NPCs start Cobblemon trainer battles using the Radical Cobblemon Trainers API, allowing servers to create gyms, story battles, and progression systems.
@@ -16,6 +17,7 @@ NPCs look at nearby players
 NPCs despawn when chunks unload and respawn when chunks reload
 
 **Dependencies**
+
 **Server**
 
 Required mods:
@@ -40,8 +42,10 @@ Fabric API
 
 TrainerNPCs Client
 
-Commands
+**Commands**
+
 **Trainer NPC Commands**
+
 Command	Description
 
 /trainernpc create <npc_id> <trainer_id>	Creates a trainer NPC linked to an RCT trainer.
@@ -57,6 +61,7 @@ Command	Description
 /trainernpc reload	Reloads trainer NPC configuration files.
 
 **Trainer Progression Commands**
+
 Command	Description
 
 /trainernpc require <npc_id> set all <trainer>	Player must defeat the listed trainer(s) before challenging this one.
@@ -68,6 +73,7 @@ Command	Description
 /trainernpc require <npc_id> message <text>	Sets the message shown when requirements are not met.
 
 **Trainer Reward Commands**
+
 Command	Description
 
 /trainernpc rewards <npc_id> sethand	Sets the reward to the item in your hand.
@@ -81,6 +87,7 @@ Command	Description
 /trainernpc rewards <npc_id> cooldown <time>	Sets reward cooldown per player (example: 1h, 30m).
 
 **Trainer Battle Rules**
+
 Command	Description
 
 /trainernpc rules <npc_id> format singles	Sets the battle format to singles.
@@ -98,6 +105,7 @@ Command	Description
 /trainernpc rules <npc_id> levelcap <level>	Sets a level cap for the battle.
 
 **Command NPC Commands**
+
 Command	Description
 
 /npc create <npc_id>	Creates a command NPC.
@@ -123,6 +131,7 @@ Command	Description
 Create a gym leader:
 
 /trainernpc create rock_gym rock_trainer
+
 /trainernpc spawn rock_gym
 
 Require Rock Gym before Grass Gym:
@@ -132,7 +141,9 @@ Require Rock Gym before Grass Gym:
 Create a healer NPC:
 
 /npc create healer
+
 /npc spawn healer
+
 /npc setcmd healer pokeheal
 
 If you want, I can also give you a much more polished GitHub README like big Cobblemon mods use with:
